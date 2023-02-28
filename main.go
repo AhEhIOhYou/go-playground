@@ -1,36 +1,18 @@
-package gotest
+package main
 
 import (
 	"fmt"
+	"strings"
 )
 
-type Parent struct {
-	id int
-	name string
-}
-
-func (p *Parent) Show() {
-	fmt.Println("Parent")
-	fmt.Printf("ID:%d, Name: %s\n", p.id, p.name)
-}
-
-type Children struct {
-	id int
-	Parent
-}
-
-func (c *Children) Show() {
-	fmt.Println("Children")
-	fmt.Printf("ID:%d, Name: %s\n", c.id, c.Parent.name)
-}
-
 func main() {
-	a := &Children{
-		0,
-		Parent{
-			1,"kek",
-		},
-	}
-	a.Show()
+	fmt.Println(Concat("a", "b"))
+}
 
+func Concat(a, b string) string {
+	var builder strings.Builder
+	builder.Grow(len(a) + len(b))
+	builder.WriteString(a)
+	builder.WriteString(b)
+	return builder.String()
 }
